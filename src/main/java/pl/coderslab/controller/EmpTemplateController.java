@@ -41,6 +41,7 @@ public class EmpTemplateController {
     public List<DayVisithour> visithours(){
         return dayhourRepository.findAll();     }
 
+
     @GetMapping("/all")
     public String all(Model model){
         model.addAttribute("workHrss", empTemplRepository.findAll());

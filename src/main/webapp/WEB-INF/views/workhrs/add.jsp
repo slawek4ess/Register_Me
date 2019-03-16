@@ -29,14 +29,26 @@
 
         <tr>
             <td>Start time</td>
-            <td><form:input path="startTime"/></td>
-            <td><form:errors path="startTime" cssClass="error" element="div"/></td>
+            <td><form:select path="startTimeObj" required="true">
+                <form:option value="00:00" label="- Wybierz -"/>
+                <form:options items="${visithours}" itemLabel="startTime" itemValue="id" />
+            </form:select> </td>
+
+            <td><form:errors path="startTimeObj" cssClass="error" element="div"/></td>
         </tr>
+
+        <form:hidden path="startTime" value="${empTemplate.startTimeObj.getStartTime()}"/>
+
         <tr>
             <td>End time</td>
-            <td><form:input path="endTime"/></td>
-            <td><form:errors path="endTime" cssClass="error" element="div"/></td>
+            <td><form:select path="endTimeObj" required="true">
+                <form:option value="00:00" label="- Wybierz -"/>
+                <form:options items="${visithours}" itemLabel="endTime" itemValue="id" />
+            </form:select> </td>
+            <td><form:errors path="endTimeObj" cssClass="error" element="div"/></td>
         </tr>
+
+        <form:hidden path="endTime" value="${empTemplate.endTimeObj.getEndTime()}"/>
 
         <tr>
             <td><input type="submit" value="Add"></td>

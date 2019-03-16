@@ -78,6 +78,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         registry.addConverter(getUserConverter());
         registry.addConverter(getEmployeeConverter());
         registry.addConverter(getWeekdayConverter());
+        registry.addConverter(getDayVisithourConverter());
     }
 
     @Bean

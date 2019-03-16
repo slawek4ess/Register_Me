@@ -1,7 +1,6 @@
 package pl.coderslab.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalTime;
 
 //Godziny pracy w tygodniu dla pracownika ("grafik")
@@ -20,10 +19,14 @@ public class EmpTemplate {
 //    @JoinColumn(name = "weekday_id")
     private Weekday weekday;
 
-    @NotNull
+    @ManyToOne
+    private DayVisithour startTimeObj;
+
     private LocalTime startTime;
 
-    @NotNull
+    @ManyToOne
+    private DayVisithour endTimeObj;
+
     private LocalTime endTime;
 
 
@@ -54,6 +57,22 @@ public class EmpTemplate {
         this.weekday = weekday;
     }
 
+
+    public DayVisithour getStartTimeObj() {
+        return startTimeObj;
+    }
+
+    public void setStartTimeObj(DayVisithour startTimeId) {
+        this.startTimeObj = startTimeId;
+    }
+
+    public DayVisithour getEndTimeObj() {
+        return endTimeObj;
+    }
+
+    public void setEndTimeObj(DayVisithour endTimeId) {
+        this.endTimeObj = endTimeId;
+    }
 
     public LocalTime getStartTime() {
         return startTime;
