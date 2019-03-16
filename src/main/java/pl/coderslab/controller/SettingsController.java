@@ -4,14 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import pl.coderslab.model.DayVisithour;
 import pl.coderslab.model.Weekday;
+import pl.coderslab.repository.DayVisithourRepository;
 import pl.coderslab.repository.WeekdayRepository;
 
 import javax.validation.Valid;
+import java.time.LocalTime;
+import java.util.List;
 
 @Controller
 @RequestMapping("/settings")
@@ -20,12 +21,23 @@ public class SettingsController {
     @Autowired
     private WeekdayRepository weekdayRepository;
 
+    @Autowired
+    private DayVisithourRepository dayhourRepository;
 
+/*
+    @ModelAttribute("visithours")
+    public List<DayVisithour> visithours(){
+        return dayhourRepository.findAll();     }
+*/
+
+
+    //----------------------------------------------------------
     @GetMapping("/all")
     public String allWeekdays(Model model){
         model.addAttribute("weekdays", weekdayRepository.findAll());
         return "settings/all";
     }
+
 
     @GetMapping("/add")
     public String addWeekday(Model model){
@@ -72,4 +84,45 @@ public class SettingsController {
         return "redirect:/settings/all";
     }
 
+
+    @GetMapping("/hours")
+    public String allDayhours(Model model){
+        model.addAttribute("dayhours", dayhourRepository.findAll());
+        return "settings/hours";
+    }
+
+    @GetMapping("/addhour")
+    public String addDayhour(Model model){
+
+        List<DayVisithour> hoursLst = dayhourRepository.findAll();
+
+        LocalTime lastEndTime = hoursLst.get(0).getEndTime();
+        for (DayVisithour thehour: hoursLst
+             ) { if (thehour.getEndTime().compareTo(lastEndTime)>0) {
+                    lastEndTime = thehour.getEndTime();
+                 }
+        }
+
+        DayVisithour newItem = new DayVisithour();
+        newItem.setStartTime(lastEndTime);
+
+        model.addAttribute("dayhour", newItem);
+        return "settings/addhour";
+    }
+    @PostMapping("/addhour")
+    public String addDayhour(@Valid DayVisithour dayhour, BindingResult result){
+        if (result.hasErrors()){
+            return "settings/add";
+        } else {
+            dayhourRepository.save(dayhour);
+            return "redirect:/settings/hours";
+        }
+    }
+
+    @GetMapping("/deletehour/{id}")
+    public String deleteHour(@PathVariable int id) {
+        dayhourRepository.delete(id);
+        return "redirect:/settings/hours";
+    }
+    
 }

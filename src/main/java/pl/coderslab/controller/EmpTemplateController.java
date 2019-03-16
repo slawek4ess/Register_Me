@@ -5,9 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.model.DayVisithour;
 import pl.coderslab.model.EmpTemplate;
 import pl.coderslab.model.Employee;
 import pl.coderslab.model.Weekday;
+import pl.coderslab.repository.DayVisithourRepository;
 import pl.coderslab.repository.EmpTemplateRepository;
 import pl.coderslab.repository.EmployeeRepository;
 import pl.coderslab.repository.WeekdayRepository;
@@ -24,6 +26,8 @@ public class EmpTemplateController {
     private EmployeeRepository employeeRepository;
     @Autowired
     private WeekdayRepository weekdayRepository;
+    @Autowired
+    private DayVisithourRepository dayhourRepository;
 
     @ModelAttribute("employees")
     public List<Employee> employees(){
@@ -33,6 +37,9 @@ public class EmpTemplateController {
     public List<Weekday> weekdays(){
         return weekdayRepository.findAll();     }
 
+    @ModelAttribute("visithours")
+    public List<DayVisithour> visithours(){
+        return dayhourRepository.findAll();     }
 
     @GetMapping("/all")
     public String all(Model model){

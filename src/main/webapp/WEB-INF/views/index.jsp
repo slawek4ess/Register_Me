@@ -13,5 +13,7 @@
 
 <a href="settings/all">3) Weekdays</a><br>
 <a href="settings/add"> ... add Weekday</a><br><br>
+
+<a href="settings/hours">3) Day visit hours</a><br>
 </body>
 </html>
