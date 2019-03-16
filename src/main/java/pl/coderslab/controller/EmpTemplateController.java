@@ -15,6 +15,7 @@ import pl.coderslab.repository.EmployeeRepository;
 import pl.coderslab.repository.WeekdayRepository;
 
 import javax.validation.Valid;
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -56,10 +57,15 @@ public class EmpTemplateController {
     }
 
     @PostMapping("/add")
-    public String add(@Valid EmpTemplate empTemplate, BindingResult result, Model model){
+    public String add(@Valid EmpTemplate empTemplate, BindingResult result){
         if (result.hasErrors()){
             return "workhrs/add";
         } else {
+            LocalTime start = empTemplate.getStartTimeObj().getStartTime();
+            LocalTime end = empTemplate.getEndTimeObj().getEndTime();
+            empTemplate.setStartTime(start);
+            empTemplate.setEndTime(end);
+
             empTemplRepository.save(empTemplate);
             return "redirect:/workhrs/all";
         }
