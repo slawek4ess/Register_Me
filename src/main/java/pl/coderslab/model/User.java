@@ -3,16 +3,17 @@ package pl.coderslab.model;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@Table(name="user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @NotBlank
     private String firstName;
@@ -23,15 +24,17 @@ public class User {
     @Email
     private String email;
 
+    private String mobileNo;
+
 /*    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Tweet> tweets;*/
 
 //----------------------------------------------------------------------------
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -59,9 +62,15 @@ public class User {
         this.email = email;
     }
 
-/*    public List<Tweet> getTweets() {
-        return tweets;    }
+    public String getMobileNo() {
+        return mobileNo;
+    }
 
-    public void setTweets(List<Tweet> tweets) {
-        this.tweets = tweets;    }  */
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
+    }
+
+/*  public List<Tweet> getTweets() { return tweets; }
+
+    public void setTweets(List<Tweet> tweets) { this.tweets = tweets; }  */
 }

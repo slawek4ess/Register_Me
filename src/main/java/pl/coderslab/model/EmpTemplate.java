@@ -3,24 +3,21 @@ package pl.coderslab.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalTime;
-import java.math.BigDecimal;
-import java.util.List;
 
-//Godziny pracy w tygodniu - dla pracownika ("grafik")
+//Godziny pracy w tygodniu dla pracownika ("grafik")
 @Entity
-@Table(name="empl_wrk_hours")
-public class EmpWorkHour {
+public class EmpTemplate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id")
+//    @JoinColumn(name = "employee_id")
     private Employee employee;
 
     @ManyToOne
-    @JoinColumn(name = "weekday_id")
+//    @JoinColumn(name = "weekday_id")
     private Weekday weekday;
 
     @NotNull
@@ -30,14 +27,13 @@ public class EmpWorkHour {
     private LocalTime endTime;
 
 
-    public EmpWorkHour() {
-    }
+//---------------------------------------------------------------
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

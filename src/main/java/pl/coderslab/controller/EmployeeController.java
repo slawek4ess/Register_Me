@@ -53,12 +53,12 @@ public class EmployeeController {
     }
 
     @RequestMapping("/edit/{id}")
-    public String edit(@PathVariable long id, Model model) {
+    public String edit(@PathVariable int id, Model model) {
         model.addAttribute("employee", employeeRepository.findOne(id));
         return "employee/edit";
     }
     @PostMapping("/edit/{id:[0-9]+}")
-    public String edit(@Valid Employee employee, BindingResult result, @PathVariable Long id) {
+    public String edit(@Valid Employee employee, BindingResult result, @PathVariable int id) {
         if (result.hasErrors()) {
             return "/employee/edit/" + id;
         }
@@ -67,7 +67,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable long id) {
+    public String delete(@PathVariable int id) {
         employeeRepository.delete(id);
         return "redirect:/employee/all";
     }

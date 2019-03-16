@@ -12,6 +12,6 @@ public class WeekdayConverter implements Converter<String, Weekday> {
 
     @Override
     public Weekday convert(String s) {
-        return weekdayRepository.findOne(Long.parseLong(s));
+        return weekdayRepository.findOne(Integer.parseInt(s));
     }
 }

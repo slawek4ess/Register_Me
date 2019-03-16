@@ -22,17 +22,18 @@
 
     <tbody>
     <tr>
-        <td>${workHrs.id}</td>
-        <td>${workHrs.employee.lastName}</td>
-        <td>${workHrs.weekday.name}</td>
-        <td>${workHrs.startTime}</td>
-        <td>${workHrs.endTime}</td>
+        <td>${empTemplate.id}</td>
+        <td>${empTemplate.employee.lastName}</td>
+        <td>${empTemplate.weekday.name}</td>
+        <td>${empTemplate.startTime}</td>
+        <td>${empTemplate.endTime}</td>
     </tr>
     </tbody>
 </table>
 
 <h1>New values:</h1>
-<form:form method="post" action="/workhrs/edit" modelAttribute="workHour">
+<%--@elvariable id="empTemplate" type="javax"--%>
+<form:form method="post" action="/workhrs/edit" modelAttribute="empTemplate">
     <table>
         <form:hidden path="id" value="${workHour.id}"/>
         <tr>

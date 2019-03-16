@@ -5,20 +5,19 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 
 @Entity     // dni_tygdnia
-@Table(name="weekdays")
 public class Weekday {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @NotBlank
     private String name;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -32,9 +31,6 @@ public class Weekday {
 
     @Override
     public String toString() {
-        return "Weekday{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "Weekday{" + "id=" + id + ", name='" + name + '\'' + '}';
     }
 }

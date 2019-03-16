@@ -2,17 +2,17 @@ package pl.coderslab.model;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 // Pracownik
 @Entity
-@Table(name="employees")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @NotBlank
     private String firstName;
@@ -25,16 +25,16 @@ public class Employee {
     private String mobile;
 
 /*    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    private List<EmpWorkHour> workHrs = new ArrayList<EmpWorkHour>();*/
+    private List<EmpTemplate> workHrs = new ArrayList<EmpTemplate>();*/
 
     public Employee() {
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -70,11 +70,11 @@ public class Employee {
         this.mobile = mobilePhone;
     }
 
-/*    public List<EmpWorkHour> getWorkHrs() {
+/*    public List<EmpTemplate> getWorkHrs() {
         return workHrs;
     }
 
-    public void setWorkHrs(List<EmpWorkHour> workHrs) {
+    public void setWorkHrs(List<EmpTemplate> workHrs) {
         this.workHrs = workHrs;
     }*/
 }

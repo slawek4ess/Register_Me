@@ -1,7 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,8 +8,10 @@
 <a href="employee/all">1) Employee List</a><br>
 <a href="employee/add"> ... add new employee</a><br><br>
 
-<a href="workhrs/all">2) Empl. Work hours</a><br>
-<a href="workhrs/add"> ... add Emp.work hours</a><br><br>
+<a href="workhrs/all">2) Empl. Template Work hours</a><br>
+<a href="workhrs/add"> ... add Emp.templ.work hours</a><br><br>
 
+<a href="settings/all">3) Weekdays</a><br>
+<a href="settings/add"> ... add Weekday</a><br><br>
 </body>
 </html>

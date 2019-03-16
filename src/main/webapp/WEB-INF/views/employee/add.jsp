@@ -33,7 +33,7 @@
             <td><form:errors path="email" cssClass="error" element="div"/></td>
         </tr>
         <tr>
-            <td>Mobile phone</td>
+            <td>Mobile No.</td>
             <td><form:input path="mobile"/></td>
             <td><form:errors path="mobile" cssClass="error" element="div"/></td>
         </tr><br>

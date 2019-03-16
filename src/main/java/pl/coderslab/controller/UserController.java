@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @RequestMapping("/edit/{id}")
-    public String edit(@PathVariable long id, Model model) {
+    public String edit(@PathVariable int id, Model model) {
         model.addAttribute("user", userRepository.findOne(id));
         return "user/edit";
     }
@@ -59,7 +59,7 @@ public class UserController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable long id) {
+    public String delete(@PathVariable int id) {
         userRepository.delete(id);
         return "redirect:/user/all";
     }

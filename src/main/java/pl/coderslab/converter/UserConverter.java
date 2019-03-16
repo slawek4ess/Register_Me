@@ -12,6 +12,6 @@ public class UserConverter implements Converter<String, User> {
 
     @Override
     public User convert(String s) {
-        return userRepository.findOne(Long.parseLong(s));
+        return userRepository.findOne(Integer.parseInt(s));
     }
 }

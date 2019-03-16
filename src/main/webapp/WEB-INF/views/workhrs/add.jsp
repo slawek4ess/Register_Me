@@ -7,12 +7,13 @@
 </head>
 <body>
 <h1>Add work hours</h1>
-<form:form method="post"  modelAttribute="workHour">
+<%--@elvariable id="empTemplate" type="javax"--%>
+<form:form method="post"  modelAttribute="empTemplate">
     <table>
         <tr>
             <td>Employee:</td>
             <td><form:select path="employee" >
-                <form:option value="-" label="- Wybierz -"/>
+                <form:option value="-1" label="- Wybierz -"/>
                 <form:options items="${employees}" itemLabel="lastName" itemValue="id" />
             </form:select> </td>
             <td><form:errors path="employee" cssClass="error" element="div"/></td>
@@ -20,7 +21,7 @@
         <tr>
             <td>Weekday</td>
             <td><form:select path="weekday" required="true">
-                <form:option value="-" label="- Wybierz -"/>
+                <form:option value="-1" label="- Wybierz -"/>
                 <form:options items="${weekdays}" itemLabel="name" itemValue="id" />
             </form:select> </td>
             <td><form:errors path="weekday" cssClass="error" element="div"/></td>

@@ -12,6 +12,6 @@ public class EmployeeConverter implements Converter<String, Employee> {
 
     @Override
     public Employee convert(String s) {
-        return employeeRepository.findOne(Long.parseLong(s));
+        return employeeRepository.findOne(Integer.parseInt(s));
     }
 }
