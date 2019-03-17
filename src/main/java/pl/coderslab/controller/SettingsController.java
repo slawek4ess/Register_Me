@@ -25,10 +25,9 @@ public class SettingsController {
     private TimeSlotRepository timeSlotRepository;
 
 /*
-    @ModelAttribute("visithours")
-    public List<TimeSlot> visithours(){
-        return timeSlotRepository.findAll();     }
-*/
+    @ModelAttribute("timeSlotLst")
+    public List<TimeSlot> timeSlotLst(){
+        return timeSlotRepository.findAll();     }   */
 
 
     //----------------------------------------------------------
@@ -97,18 +96,20 @@ public class SettingsController {
         LocalTime lastEndTime = LocalTime.parse("08:00");   // get startHour from previous end
 
         List<TimeSlot> hoursLst = timeSlotRepository.findAll();
+
         if (hoursLst.size()>0) {
             lastEndTime = hoursLst.get(0).getEndTime();
-            for (TimeSlot thehour : hoursLst)
-                { if (thehour.getEndTime().compareTo(lastEndTime) > 0)
-                        { lastEndTime = thehour.getEndTime(); }
+            for (TimeSlot thehour : hoursLst) {
+                if (thehour.getEndTime().compareTo(lastEndTime) > 0) {
+                    lastEndTime = thehour.getEndTime();
                 }
+            }
         }
         LocalTime newEndTime = lastEndTime.plusMinutes(30);
 
-                TimeSlot newItem = new TimeSlot();
-        newItem.setStartTime(lastEndTime);
-        newItem.setEndTime(newEndTime);
+        TimeSlot newItem = new TimeSlot();
+         newItem.setStartTime(lastEndTime);
+         newItem.setEndTime(newEndTime);
 
         model.addAttribute("timeSlot", newItem);
 

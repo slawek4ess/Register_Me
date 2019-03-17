@@ -12,8 +12,8 @@
 <a href="employee/all">2) Employee List</a><br>
 <a href="employee/add"> ... add new employee</a><br><br>
 
-<a href="workhrs/all" >3) Empl. Template Work hours</a><br>
-<a href="workhrs/add"> ... add Emp.templ.work hours</a><br><br>
+<a href="workhrs/all" >3) Employee week Schedules</a><br>
+<a href="workhrs/add"> ... add All week Emp.templ.workhours</a><br><br>
 
 </body>
 </html>

@@ -17,7 +17,9 @@
     <th>Employee</th>
     <th>Weekday</th>
     <th>Start time</th>
+    <th>Start time Obj</th>
     <th>End time</th>
+    <th>End time Obj</th>
     </thead>
 
     <tbody>
@@ -26,7 +28,9 @@
         <td>${empTemplate.employee.lastName}</td>
         <td>${empTemplate.weekday.name}</td>
         <td>${empTemplate.startTime}</td>
+        <td>${empTemplate.startTimeObj.getStartTime()}</td>
         <td>${empTemplate.endTime}</td>
+        <td>${empTemplate.endTimeObj.getEndTime()}</td>
     </tr>
     </tbody>
 </table>
@@ -35,7 +39,7 @@
 <%--@elvariable id="empTemplate" type="javax"--%>
 <form:form method="post" action="/workhrs/edit" modelAttribute="empTemplate">
     <table>
-        <form:hidden path="id" value="${workHour.id}"/>
+        <form:hidden path="id" value="${empTemplate.id}"/>
         <tr>
             <td>Employee</td>
             <td>
@@ -53,20 +57,31 @@
             <td><form:errors path="weekday" cssClass="error" element="div"/></td>
         </tr>
         <tr>
-            <td>Start time</td>
-            <td><form:select path="startTime">
-                <form:options itemValue="id" itemLabel="startTime" items="${visithours}"/>
+            <td>Day start time</td>
+            <td><form:select path="startTimeObj">
+                <form:options itemValue="id" itemLabel="startTime" items="${timeSlotLst}"/>
             </form:select>
             </td>
-            <td><form:errors path="startTime" cssClass="error" element="div"/></td>
+            <td><form:errors path="startTimeObj" cssClass="error" element="div"/></td>
+        </tr>
+        <%--<form:hidden path="endTime" value="${empTemplate.endTime}"/>--%>
+
+        <tr>
+            <td>Start Time</td>
+            <td><form:input path="startTime" readonly="true"/></td>
+        </tr>
+
+        <tr>
+            <td>Day end time</td>
+            <td><form:select path="endTimeObj" itemValue="${empTemplate.endTimeObj}">
+                <form:options itemValue="id" itemLabel="endTime" items="${timeSlotLst}"/>
+            </form:select>
+            </td>
+            <td><form:errors path="endTimeObj" cssClass="error" element="div"/></td>
         </tr>
         <tr>
-            <td>End time</td>
-            <td><form:select path="endTime">
-                <form:options itemValue="id" itemLabel="endTime" items="${visithours}"/>
-            </form:select>
-            </td>
-            <td><form:errors path="endTime" cssClass="error" element="div"/></td>
+            <td>End Time</td>
+            <td><form:input path="endTime" readonly="true"/></td>
         </tr>
 
         <tr>

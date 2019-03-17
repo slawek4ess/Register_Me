@@ -34,7 +34,7 @@
     </tbody>
 </table>
 
-<a href="/workhrs/add">Add new workHrs</a>
+<a href="/workhrs/add">Add all week workHrs</a>
 
 <h4><a href="/">Home page</a></h4>
 </body>
