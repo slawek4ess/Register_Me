@@ -5,9 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.model.DayVisithour;
+import pl.coderslab.model.TimeSlot;
 import pl.coderslab.model.Weekday;
-import pl.coderslab.repository.DayVisithourRepository;
+import pl.coderslab.repository.TimeSlotRepository;
 import pl.coderslab.repository.WeekdayRepository;
 
 import javax.validation.Valid;
@@ -22,12 +22,12 @@ public class SettingsController {
     private WeekdayRepository weekdayRepository;
 
     @Autowired
-    private DayVisithourRepository dayhourRepository;
+    private TimeSlotRepository timeSlotRepository;
 
 /*
     @ModelAttribute("visithours")
-    public List<DayVisithour> visithours(){
-        return dayhourRepository.findAll();     }
+    public List<TimeSlot> visithours(){
+        return timeSlotRepository.findAll();     }
 */
 
 
@@ -37,7 +37,6 @@ public class SettingsController {
         model.addAttribute("weekdays", weekdayRepository.findAll());
         return "settings/all";
     }
-
 
     @GetMapping("/add")
     public String addWeekday(Model model){
@@ -84,44 +83,52 @@ public class SettingsController {
         return "redirect:/settings/all";
     }
 
+// timeSlot/dayHours[oldname] table actions
 
     @GetMapping("/hours")
-    public String allDayhours(Model model){
-        model.addAttribute("dayhours", dayhourRepository.findAll());
+    public String allHours(Model model){
+        model.addAttribute("timeSlotLst", timeSlotRepository.findAll());
         return "settings/hours";
     }
 
     @GetMapping("/addhour")
-    public String addDayhour(Model model){
+    public String addHour(Model model){
 
-        List<DayVisithour> hoursLst = dayhourRepository.findAll();
+        LocalTime lastEndTime = LocalTime.parse("08:00");   // get startHour from previous end
 
-        LocalTime lastEndTime = hoursLst.get(0).getEndTime();
-        for (DayVisithour thehour: hoursLst
-             ) { if (thehour.getEndTime().compareTo(lastEndTime)>0) {
-                    lastEndTime = thehour.getEndTime();
-                 }
+        List<TimeSlot> hoursLst = timeSlotRepository.findAll();
+        if (hoursLst.size()>0) {
+            lastEndTime = hoursLst.get(0).getEndTime();
+            for (TimeSlot thehour : hoursLst)
+                { if (thehour.getEndTime().compareTo(lastEndTime) > 0)
+                        { lastEndTime = thehour.getEndTime(); }
+                }
         }
+        LocalTime newEndTime = lastEndTime.plusMinutes(30);
 
-        DayVisithour newItem = new DayVisithour();
+                TimeSlot newItem = new TimeSlot();
         newItem.setStartTime(lastEndTime);
+        newItem.setEndTime(newEndTime);
 
-        model.addAttribute("dayhour", newItem);
+        model.addAttribute("timeSlot", newItem);
+
         return "settings/addhour";
     }
     @PostMapping("/addhour")
-    public String addDayhour(@Valid DayVisithour dayhour, BindingResult result){
+    public String addDayhour(@Valid TimeSlot timeSlot, BindingResult result){
         if (result.hasErrors()){
-            return "settings/add";
+            return "settings/addhour";
         } else {
-            dayhourRepository.save(dayhour);
+            LocalTime endTime = (LocalTime) timeSlot.getEndTime();
+            timeSlot.setEndTime(endTime);
+            timeSlotRepository.save(timeSlot);
             return "redirect:/settings/hours";
         }
     }
 
     @GetMapping("/deletehour/{id}")
     public String deleteHour(@PathVariable int id) {
-        dayhourRepository.delete(id);
+        timeSlotRepository.delete(id);
         return "redirect:/settings/hours";
     }
     

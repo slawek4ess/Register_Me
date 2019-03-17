@@ -20,12 +20,12 @@ public class EmpTemplate {
     private Weekday weekday;
 
     @ManyToOne
-    private DayVisithour startTimeObj;
+    private TimeSlot startTimeObj;
 
     private LocalTime startTime;
 
     @ManyToOne
-    private DayVisithour endTimeObj;
+    private TimeSlot endTimeObj;
 
     private LocalTime endTime;
 
@@ -58,19 +58,19 @@ public class EmpTemplate {
     }
 
 
-    public DayVisithour getStartTimeObj() {
+    public TimeSlot getStartTimeObj() {
         return startTimeObj;
     }
 
-    public void setStartTimeObj(DayVisithour startTimeId) {
+    public void setStartTimeObj(TimeSlot startTimeId) {
         this.startTimeObj = startTimeId;
     }
 
-    public DayVisithour getEndTimeObj() {
+    public TimeSlot getEndTimeObj() {
         return endTimeObj;
     }
 
-    public void setEndTimeObj(DayVisithour endTimeId) {
+    public void setEndTimeObj(TimeSlot endTimeId) {
         this.endTimeObj = endTimeId;
     }
 

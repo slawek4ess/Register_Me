@@ -14,17 +14,17 @@
     <th>ID</th>
     <th>Start time</th>
     <th>End time</th>
-    <th colspan="2">Actions</th>
+    <th colspan="">Actions</th>
     </thead>
 
     <tbody>
-    <c:forEach items="${dayhours}" var="dayhours">
+    <c:forEach items="${timeSlotLst}" var="timeSlot">
         <tr>
-            <td>${dayhours.id}</td>
-            <td>${dayhours.startTime}</td>
-            <td>${dayhours.endTime}</td>
-            <td><%--<a href="/settings/edithour/${dayhours.id}">Edit</a>--%></td>
-            <td><a href="/settings/deletehour/${dayhours.id}" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a></td>
+            <td>${timeSlot.id}</td>
+            <td>${timeSlot.startTime}</td>
+            <td>${timeSlot.endTime}</td>
+                <%--<td><a href="/settings/edithour/${timeSlot.id}">Edit</a></td>--%>
+            <td><a href="/settings/deletehour/${timeSlot.id}" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a></td>
         </tr>
     </c:forEach>
     </tbody>

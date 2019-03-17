@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import pl.coderslab.converter.DayVisithourConverter;
+import pl.coderslab.converter.TimeSlotConverter;
 import pl.coderslab.converter.EmployeeConverter;
 import pl.coderslab.converter.UserConverter;
 import pl.coderslab.converter.WeekdayConverter;
@@ -78,7 +78,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         registry.addConverter(getUserConverter());
         registry.addConverter(getEmployeeConverter());
         registry.addConverter(getWeekdayConverter());
-        registry.addConverter(getDayVisithourConverter());
+        registry.addConverter(getTimeSlotConverter());
     }
 
     @Bean
@@ -97,8 +97,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public DayVisithourConverter getDayVisithourConverter() {
-        return new DayVisithourConverter();
+    public TimeSlotConverter getTimeSlotConverter() {
+        return new TimeSlotConverter();
     }
 
 }

@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalTime;
 
 @Entity
-public class DayVisithour {
+public class TimeSlot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,5 +43,4 @@ public class DayVisithour {
     public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
-
 }

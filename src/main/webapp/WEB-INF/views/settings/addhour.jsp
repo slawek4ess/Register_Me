@@ -8,8 +8,8 @@
 <body>
 <h1>Add day hour</h1>
 
-<%--@elvariable id="dayhour" type="javax"--%>
-<form:form method="post" action="/settings/addhour" modelAttribute="dayhour">
+<%--@elvariable id="timeSlot" type="javax"--%>
+<form:form method="post" action="/settings/addhour" modelAttribute="timeSlot">
     <table>
         <tr>
             <td>Start time</td>
@@ -27,7 +27,7 @@
         </tr>
     </table>
 </form:form>
-<%--${visithours.}--%>
+
 <h4><a href="/">Home</a></h4>
 </body>
 </html>

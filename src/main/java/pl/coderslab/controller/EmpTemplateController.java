@@ -5,11 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.model.DayVisithour;
+import pl.coderslab.model.TimeSlot;
 import pl.coderslab.model.EmpTemplate;
 import pl.coderslab.model.Employee;
 import pl.coderslab.model.Weekday;
-import pl.coderslab.repository.DayVisithourRepository;
+import pl.coderslab.repository.TimeSlotRepository;
 import pl.coderslab.repository.EmpTemplateRepository;
 import pl.coderslab.repository.EmployeeRepository;
 import pl.coderslab.repository.WeekdayRepository;
@@ -22,13 +22,13 @@ import java.util.List;
 @RequestMapping("/workhrs")
 public class EmpTemplateController {
     @Autowired
-    private EmpTemplateRepository empTemplRepository;
+    private EmpTemplateRepository templateRepository;
     @Autowired
     private EmployeeRepository employeeRepository;
     @Autowired
     private WeekdayRepository weekdayRepository;
     @Autowired
-    private DayVisithourRepository dayhourRepository;
+    private TimeSlotRepository timeSlotRepository;
 
     @ModelAttribute("employees")
     public List<Employee> employees(){
@@ -39,13 +39,13 @@ public class EmpTemplateController {
         return weekdayRepository.findAll();     }
 
     @ModelAttribute("visithours")
-    public List<DayVisithour> visithours(){
-        return dayhourRepository.findAll();     }
+    public List<TimeSlot> visithours(){
+        return timeSlotRepository.findAll();     }
 
 
     @GetMapping("/all")
     public String all(Model model){
-        model.addAttribute("workHrss", empTemplRepository.findAll());
+        model.addAttribute("workHrss", templateRepository.findAll());
         return "workhrs/all";
     }
 
@@ -66,14 +66,14 @@ public class EmpTemplateController {
             empTemplate.setStartTime(start);
             empTemplate.setEndTime(end);
 
-            empTemplRepository.save(empTemplate);
+            templateRepository.save(empTemplate);
             return "redirect:/workhrs/all";
         }
     }
 
     @RequestMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model model) {
-        model.addAttribute("empTemplate", empTemplRepository.findOne(id));
+        model.addAttribute("empTemplate", templateRepository.findOne(id));
         return "workhrs/edit";
     }
 
@@ -82,14 +82,19 @@ public class EmpTemplateController {
         if (result.hasErrors()){
             return "workhrs/edit";
         } else {
-            empTemplRepository.save(empTemplate);
+            LocalTime start = empTemplate.getStartTimeObj().getStartTime();
+            empTemplate.setStartTime(start);
+            LocalTime end = empTemplate.getEndTimeObj().getEndTime();
+            empTemplate.setEndTime(end);
+
+            templateRepository.save(empTemplate);
             return "redirect:/workhrs/all";
         }
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable int id) {
-        empTemplRepository.delete(id);
+        templateRepository.delete(id);
         return "redirect:/workhrs/all";
     }
 }

@@ -54,12 +54,18 @@
         </tr>
         <tr>
             <td>Start time</td>
-            <td><form:input path="startTime"/></td>
+            <td><form:select path="startTime">
+                <form:options itemValue="id" itemLabel="startTime" items="${visithours}"/>
+            </form:select>
+            </td>
             <td><form:errors path="startTime" cssClass="error" element="div"/></td>
         </tr>
         <tr>
             <td>End time</td>
-            <td><form:input path="endTime"/></td>
+            <td><form:select path="endTime">
+                <form:options itemValue="id" itemLabel="endTime" items="${visithours}"/>
+            </form:select>
+            </td>
             <td><form:errors path="endTime" cssClass="error" element="div"/></td>
         </tr>
 
