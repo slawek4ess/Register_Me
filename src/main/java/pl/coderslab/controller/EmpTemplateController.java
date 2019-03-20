@@ -31,8 +31,10 @@ public class EmpTemplateController {
     private TimeSlotRepository timeSlotRepository;
 
     @ModelAttribute("employees")
-    public List<Employee> employees(){
-        return employeeRepository.findAll();     }
+    public List<Employee> employees(){  //have to check if empl is to fill up
+        List<Employee> allEmployee = employeeRepository.findAll();
+
+        return allEmployee;     }
 
         @ModelAttribute("weekdays")
     public List<Weekday> weekdays(){
@@ -89,7 +91,7 @@ public class EmpTemplateController {
     @RequestMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model model) {
         model.addAttribute("empTemplate", templateRepository.findOne(id));
-        model.addAttribute("endTimeObj", templateRepository.findOne(id).getEndTimeObj());
+//        model.addAttribute("endTimeObj", templateRepository.findOne(id).getEndTimeObj());
         return "workhrs/edit";
     }
 

@@ -17,62 +17,52 @@
     <th>Employee</th>
     <th>Weekday</th>
     <th>Start time</th>
-    <th>Start time Obj</th>
     <th>End time</th>
-    <th>End time Obj</th>
-    </thead>
-
+    </thead>          <%---------------------------------------------------%>
     <tbody>
     <tr>
         <td>${empTemplate.id}</td>
         <td>${empTemplate.employee.lastName}</td>
         <td>${empTemplate.weekday.name}</td>
-        <td>${empTemplate.startTime}</td>
+        <%--<td>${empTemplate.startTime}</td>--%>
         <td>${empTemplate.startTimeObj.getStartTime()}</td>
-        <td>${empTemplate.endTime}</td>
+        <%--<td>${empTemplate.endTime}</td>--%>
         <td>${empTemplate.endTimeObj.getEndTime()}</td>
     </tr>
     </tbody>
 </table>
-
+<%--------------------------------------------------------------------------%>
 <h1>New values:</h1>
 <%--@elvariable id="empTemplate" type="javax"--%>
 <form:form method="post" action="/workhrs/edit" modelAttribute="empTemplate">
     <table>
         <form:hidden path="id" value="${empTemplate.id}"/>
-        <tr>
-            <td>Employee</td>
+        <tr><td>Employee</td>
             <td>
                 <form:select path="employee">
                 <form:options itemValue="id" itemLabel="lastName" items="${employees}"/>
                 </form:select> </td>
             <td><form:errors path="employee" cssClass="error" element="div"/></td>
         </tr>
-        <tr>
-            <td>Weekday</td>
+        <tr><td>Weekday</td>
             <td><form:select path="weekday">
                 <form:options itemValue="id" itemLabel="name" items="${weekdays}"/>
                 </form:select>
             </td>
             <td><form:errors path="weekday" cssClass="error" element="div"/></td>
         </tr>
-        <tr>
-            <td>Day start time</td>
+        <tr><td>Day start time</td>
             <td><form:select path="startTimeObj">
                 <form:options itemValue="id" itemLabel="startTime" items="${timeSlotLst}"/>
             </form:select>
             </td>
             <td><form:errors path="startTimeObj" cssClass="error" element="div"/></td>
         </tr>
-        <%--<form:hidden path="endTime" value="${empTemplate.endTime}"/>--%>
-
-        <tr>
-            <td>Start Time</td>
-            <td><form:input path="startTime" readonly="true"/></td>
+        <tr><td>(prev.start value)</td>
+            <td><form:input path="startTime"    readonly="true"/></td>
         </tr>
 
-        <tr>
-            <td>Day end time</td>
+        <tr><td>Day end time</td>
             <td><form:select path="endTimeObj" itemValue="${empTemplate.endTimeObj}">
                 <form:options itemValue="id" itemLabel="endTime" items="${timeSlotLst}"/>
             </form:select>
@@ -80,8 +70,8 @@
             <td><form:errors path="endTimeObj" cssClass="error" element="div"/></td>
         </tr>
         <tr>
-            <td>End Time</td>
-            <td><form:input path="endTime" readonly="true"/></td>
+            <td>(prev.end value)</td>
+            <td><form:input path="endTime"      readonly="true"/></td>
         </tr>
 
         <tr>

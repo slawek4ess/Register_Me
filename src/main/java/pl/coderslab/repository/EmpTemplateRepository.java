@@ -9,6 +9,6 @@ import java.util.List;
 public interface EmpTemplateRepository extends JpaRepository<EmpTemplate, Integer> {
 
     List<EmpTemplate> getEmpTemplateByEmployee(Employee employee);
-
+//    List<EmpTemplate> getDistinctByEndTimeObjExists();
 
 }
