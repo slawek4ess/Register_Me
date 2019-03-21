@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
-    @Query("select distinct Employee.lastName from Employee Employee LEFT JOIN EmpTemplate EmpTemplate " +
-            "on Employee.id = EmpTemplate.employee.id")
+    @Query("select distinct Employee from Employee Employee LEFT JOIN EmpTemplate EmpTemplate " +
+            "on Employee.id = EmpTemplate.employee.id where EmpTemplate.employee.id is null")
     List<Employee> findEmployeesByWithQuery();
 
 }

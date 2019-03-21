@@ -14,7 +14,7 @@
             <td>Employee:</td>
             <td><form:select path="employee" >
                 <form:option value="-1" label="- Wybierz -"/>
-                <form:options items="${employees}" itemLabel="lastName" itemValue="id" />
+                <form:options items="${employees2}" itemLabel="lastName" itemValue="id" />
             </form:select> </td>
             <td><form:errors path="employee" cssClass="error" element="div"/></td>
         </tr>

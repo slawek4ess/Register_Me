@@ -31,14 +31,22 @@ public class EmpTemplateController {
     private TimeSlotRepository timeSlotRepository;
 
     @ModelAttribute("employees")
-    public List<Employee> employees(){  //have to check if empl is to fill up
+    public List<Employee> employees(){  //all items
         List<Employee> allEmployee = employeeRepository.findAll();
-
         return allEmployee;     }
 
-        @ModelAttribute("weekdays")
+    @ModelAttribute("employees2")
+    public List<Employee> employees2(){  //have to check if empl is to fill up
+        List<Employee> restEmployee = employeeRepository.findEmployeesByWithQuery();
+        return restEmployee;     }
+
+    @ModelAttribute("weekdays")
     public List<Weekday> weekdays(){
         return weekdayRepository.findAll();     }
+
+    @ModelAttribute("weekdays2")
+    public List<Weekday> weekdays2(){
+        return weekdayRepository.findWeekdayByWithQuery();  }
 
     @ModelAttribute("timeSlotLst")
     public List<TimeSlot> visithours(){
