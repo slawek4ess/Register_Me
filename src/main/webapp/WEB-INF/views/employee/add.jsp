@@ -33,7 +33,7 @@
         </tr><br>
         <tr>
             <td></td>
-            <td><input type="submit" value="add"></td>
+            <td><input type="submit" value="Add"></td>
         </tr>
     </table>
 </form:form>

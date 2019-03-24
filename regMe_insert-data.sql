@@ -1,5 +1,8 @@
 use registerMeDB;
-ALTER TABLE `registerMeDB`.`TimeSlot` ADD INDEX `Constr` (`startTime` ASC);
+ALTER TABLE `registerMeDB`.`TimeSlot` ADD INDEX `Constraint` (`startTime` ASC);
+ALTER TABLE `registerMeDB`.`EmpTemplate`
+  ADD INDEX `FK_Constraint` (`employee_id` ASC, `weekday_id` ASC);
+
 
 #Settings 
 INSERT INTO registerMeDB.Weekday (`name`) VALUES ('Poniedziałek'),('Wtorek'),('Środa'),('Czwartek'),('Piątek'),('Sobota');

@@ -44,10 +44,6 @@ public class EmpTemplateController {
     public List<Weekday> weekdays(){
         return weekdayRepository.findAll();     }
 
-    @ModelAttribute("weekdays2")
-    public List<Weekday> weekdays2(){
-        return weekdayRepository.findWeekdayByWithQuery();  }
-
     @ModelAttribute("timeSlotLst")
     public List<TimeSlot> visithours(){
         return timeSlotRepository.findAll();     }
@@ -71,7 +67,8 @@ public class EmpTemplateController {
         if (result.hasErrors()){
             return "workhrs/add";
         } else {
-            //saveWholeWeek(empTemplate);
+            fillLocalTime(empTemplate);
+            templateRepository.save(empTemplate);
             return "redirect:/workhrs/all";
         }
     }
@@ -124,14 +121,17 @@ public class EmpTemplateController {
         if (result.hasErrors()){
             return "workhrs/edit";
         } else {
-            LocalTime start = empTemplate.getStartTimeObj().getStartTime();
-                empTemplate.setStartTime(start);
-            LocalTime end = empTemplate.getEndTimeObj().getEndTime();
-                empTemplate.setEndTime(end);
-
+            fillLocalTime(empTemplate);
             templateRepository.save(empTemplate);
             return "redirect:/workhrs/all";
         }
+    }
+
+    private void fillLocalTime(@Valid EmpTemplate empTemplate) {
+        LocalTime start = empTemplate.getStartTimeObj().getStartTime();
+        empTemplate.setStartTime(start);
+        LocalTime end = empTemplate.getEndTimeObj().getEndTime();
+        empTemplate.setEndTime(end);
     }
 
     @GetMapping("/delete/{id}")
@@ -139,4 +139,8 @@ public class EmpTemplateController {
         templateRepository.delete(id);
         return "redirect:/workhrs/all";
     }
+
+    /*        Employee emp = templateRepository.findOne(id).getEmployee();
+        List<Weekday> weekdaysToAdd = weekdayRepository.findWeekdayByEmployeeWithQuery(emp);
+        model.addAttribute("weekdaysToAdd", weekdaysToAdd);*/
 }
