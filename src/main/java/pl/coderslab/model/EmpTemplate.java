@@ -19,6 +19,7 @@ public class EmpTemplate {
 //    @JoinColumn(name = "weekday_id")
     private Weekday weekday;
 
+
     @ManyToOne
     private TimeSlot startTimeObj;
 

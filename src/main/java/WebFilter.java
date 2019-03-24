@@ -1,5 +1,3 @@
-package pl.coderslab;
-
 import javax.servlet.*;
 import java.io.IOException;
 

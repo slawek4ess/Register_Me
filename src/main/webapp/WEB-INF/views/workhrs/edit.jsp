@@ -39,17 +39,22 @@
         <form:hidden path="id" value="${empTemplate.id}"/>
         <tr><td>Employee</td>
             <td>
-                <form:select path="employee">
-                <form:options itemValue="id" itemLabel="lastName" items="${employees}"/>
+                <form:select path="employee" disabled="true">
+                <form:options itemValue="id" itemLabel="lastName" items="${employees}" />
                 </form:select> </td>
+<%--
             <td><form:errors path="employee" cssClass="error" element="div"/></td>
-        </tr>
+            <td><form:input path="employee"      readonly="true"/></td>    </tr>
+--%>
         <tr><td>Weekday</td>
-            <td><form:select path="weekday">
-                <form:options itemValue="id" itemLabel="name" items="${weekdays}"/>
+            <td><form:select path="weekday" disabled="true">
+                <form:options itemValue="id" itemLabel="name" items="${weekdays}" />
                 </form:select>
             </td>
+<%--
             <td><form:errors path="weekday" cssClass="error" element="div"/></td>
+            <td><form:input path="weekday"      readonly="true"/></td>    </tr>
+--%>
         </tr>
         <tr><td>Day start time</td>
             <td><form:select path="startTimeObj">

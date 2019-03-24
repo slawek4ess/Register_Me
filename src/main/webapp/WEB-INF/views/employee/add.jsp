@@ -1,12 +1,5 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: slawek
-  Date: 22.02.19
-  Time: 10:19
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Add employee</title>
@@ -15,6 +8,7 @@
 <body>
 <h1>Add employee</h1>
 
+<%--@elvariable id="employee" type="org.hibernate.mapping"--%>
 <form:form method="post" action="/employee/add" modelAttribute="employee">
     <table>
         <tr>
