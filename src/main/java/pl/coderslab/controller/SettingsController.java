@@ -7,6 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.TimeSlot;
 import pl.coderslab.model.Weekday;
+import pl.coderslab.model.Category;
+import pl.coderslab.repository.CategoryRepository;
 import pl.coderslab.repository.TimeSlotRepository;
 import pl.coderslab.repository.WeekdayRepository;
 
@@ -24,11 +26,8 @@ public class SettingsController {
     @Autowired
     private TimeSlotRepository timeSlotRepository;
 
-/*
-    @ModelAttribute("timeSlotLst")
-    public List<TimeSlot> timeSlotLst(){
-        return timeSlotRepository.findAll();     }   */
-
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     //----------------------------------------------------------
     @GetMapping("/all")
@@ -82,7 +81,7 @@ public class SettingsController {
         return "redirect:/settings/all";
     }
 
-// timeSlot/dayHours[oldname] table actions
+// ------------ timeSlot ----------------------------------------------------
 
     @GetMapping("/hours")
     public String allHours(Model model){
@@ -131,6 +130,34 @@ public class SettingsController {
     public String deleteHour(@PathVariable int id) {
         timeSlotRepository.delete(id);
         return "redirect:/settings/hours";
+    }
+// ------------ Category ----------------------------------------------------
+
+    @GetMapping("/categ")
+    public String allCategs(Model model){
+        model.addAttribute("categoryLst", categoryRepository.findAll());
+        return "settings/categ";
+    }
+
+    @GetMapping("/addcateg")
+    public String addCateg(Model model){
+        model.addAttribute("category", new Category() );
+        return "settings/addcateg";
+    }
+    @PostMapping("/addcateg")
+    public String addCateg(@Valid Category category, BindingResult result){
+        if (result.hasErrors()){
+            return "settings/addcateg";
+        } else {
+            categoryRepository.save(category);
+            return "redirect:/settings/categ";
+        }
+    }
+
+    @GetMapping("/deletecateg/{id}")
+    public String deletCateg(@PathVariable int id) {
+        categoryRepository.delete(id);
+        return "redirect:/settings/categ";
     }
     
 }

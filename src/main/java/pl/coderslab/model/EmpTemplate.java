@@ -11,20 +11,21 @@ public class EmpTemplate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 //    @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 //    @JoinColumn(name = "weekday_id")
     private Weekday weekday;
 
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     private TimeSlot startTimeObj;
 
     private LocalTime startTime;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     private TimeSlot endTimeObj;
 
     private LocalTime endTime;

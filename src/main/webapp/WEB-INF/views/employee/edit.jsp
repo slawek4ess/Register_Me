@@ -34,6 +34,7 @@
 </table>
 
 <h1>New values:</h1>
+<%--@elvariable id="employee" type="javax"--%>
 <form:form method="post" action="/employee/edit" modelAttribute="employee">
     <table>
         <form:hidden path="id" value="${employee.id}"/>
