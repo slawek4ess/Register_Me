@@ -1,45 +1,58 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: slawek
-  Date: 22.02.19
-  Time: 10:24
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>Title</title>
+    <style>
+        <%@include file="../css/style.css"%>
+        <%@include file="../css/w3.css" %>
+    </style>
+    <title>Adresy</title>
 </head>
+<%@include file="../elements/header.jsp" %>
 <body>
+<h1>Osoby w bazie danych</h1>
 
-<h1>User list</h1>
+<c:if test="${deleteError==true}">
+    <div class="w3-panel w3-red w3-display-container">
+    <span onclick="this.parentElement.style.display='none';
+            <c:set var="deleteError" value="false" scope="session" />"
+        class="w3-button w3-large w3-display-topright">&times;</span>
+        <p>Nie można usunąć osoby, jest przypisana do umowy !</p>
+    </div>
+</c:if>
 
-<table border="1" style="text-align: center">
+<table class="w3-table-all">
     <thead>
-    <th>ID</th>
-    <th>E-mail</th>
-    <th>First name</th>
-    <th>Last name</th>
+    <tr class="w3-blue">
+        <td>Firma</td>
+        <td>Imię</td>
+        <td>Nazwisko</td>
+        <td>PESEL</td>
+        <td>Telefon</td>
+        <td>Email</td>
+        <td>Edycja</td>
+        <td>Usuwanie</td>
+    </tr>
     </thead>
-
     <tbody>
     <c:forEach items="${users}" var="user">
         <tr>
-            <td>${user.id}</td>
-            <td>${user.email}</td>
+            <td>${user.company.name}</td>
             <td>${user.firstName}</td>
             <td>${user.lastName}</td>
-            <td><a href="/user/edit/${user.id}">Edit</a></td>
-            <td><a href="/user/delete/${user.id}" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a></td>
+            <td>${user.pesel}</td>
+            <td>${user.phone}</td>
+            <td>${user.email}</td>
+            <td><a href="${pageContext.request.contextPath}/user/edit/${user.id}">Edytuj osobę</a></td>
+            <td><a href="${pageContext.request.contextPath}/user/delete/${user.id}" onclick="return confirm
+            ('Na pewno chcesz usunąć ?')">Usuń osobę</a></td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-
-<a href="/user/add">Add new user</a>
-
-<h4><a href="/home">Home</a></h4>
-
+<br>
+<a href="${pageContext.request.contextPath}/user/add" class="w3-button w3-xlarge w3-border w3-border-blue w3-round-xxlarge">Nowa osoba</a>
+<a href="${pageContext.request.contextPath}/admin/adminHome" class="w3-button w3-xlarge w3-border w3-border-blue w3-round-xxlarge">Panel administratora</a>
 </body>
 </html>

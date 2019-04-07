@@ -7,34 +7,38 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @NotBlank
+    @NotBlank(message = " Podaj imię! ")
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message = " Podaj nazwisko! ")
     private String lastName;
 
-    @Email
+    @NotBlank(message = "Pole nie może być puste")
+    @Pattern(message = " Podaj nr telefonu złożony z 9 cyfr! ", regexp = "^\\d{9}$")
+    private String phone;
+
+    @NotBlank(message = "Pole nie może być puste")
+    @Email(message = " Podaj poprawny adres email ! ")
     private String email;
 
-    private String mobileNo;
+    private String password;
 
-/*    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Tweet> tweets;*/
+    private boolean admin;
 
-//----------------------------------------------------------------------------
-    public Integer getId() {
+//----------------------------------------------------------------------
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -46,12 +50,23 @@ public class User {
         this.firstName = firstName;
     }
 
+    public String getFullName() {
+        return lastName+" "+firstName; }
+
     public String getLastName() {
         return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -62,15 +77,25 @@ public class User {
         this.email = email;
     }
 
-    public String getMobileNo() {
-        return mobileNo;
+    public boolean isAdmin() {
+        return admin;
     }
 
-    public void setMobileNo(String mobileNo) {
-        this.mobileNo = mobileNo;
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
-/*  public List<Tweet> getTweets() { return tweets; }
 
-    public void setTweets(List<Tweet> tweets) { this.tweets = tweets; }  */
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }

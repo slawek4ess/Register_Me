@@ -12,6 +12,6 @@
 </head>
 <body>
 <%@include file="../elements/header.jsp" %>
-<%@include file="../user/details.jsp" %>
+<%@include file="../admin/details.jsp" %>
 </body>
 </html>
