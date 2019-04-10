@@ -48,7 +48,7 @@
     </table>
 </form:form>
 
-<h4><a href="/">Home page</a></h4>
+<h4><a href="/admin/home">Home page</a></h4>
 
 </body>
 </html>

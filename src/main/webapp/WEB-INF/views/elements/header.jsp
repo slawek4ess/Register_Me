@@ -3,7 +3,7 @@
 
     <div class="w3-container w3-blue-gray" align="center">
         <br><span class="w3-xlarge">REJESTRACJA</span><br>
-        <span class="w3-large">terminów wizyt</span><br><br>
+        <span class="w3-large">terminu wizyty</span><br><br>
     </div>
 
 

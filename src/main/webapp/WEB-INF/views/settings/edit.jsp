@@ -1,21 +1,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: slawek
-  Date: 22.02.19
-  Time: 11:29
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Weekday</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        <%@include file="../css/style.css"%>
+        <%@include file="../css/w3.css" %>
+    </style>
+    <title>Dni tygodnia</title>
 </head>
+<%@include file="../elements/header.jsp" %>
 <body>
-<h1>Current values:</h1>
+<h1>Osoby w bazie danych</h1>
 
-<table border="1" style="text-align: center">
+<table class="w3-table-all">
     <thead>
     <th>ID</th>
     <th>Dayname</th>
@@ -28,11 +25,10 @@
     </tr>
     </tbody>
 </table>
-
 <h1>New values:</h1>
 <%--@elvariable id="weekday" type="javax"--%>
 <form:form method="post" action="/settings/edit" modelAttribute="weekday">
-    <table>
+    <table class="w3-table-all">
         <form:hidden path="id" value="${weekday.id}"/>
         <tr>
             <td>E-mail</td>
@@ -45,7 +41,11 @@
         </tr>
     </table>
 </form:form>
+<br>
+<a href="${pageContext.request.contextPath}/settings/all"
+   class="w3-button w3-xlarge w3-border w3-border-blue w3-round-xxlarge">Powrót</a>
 
-<h4><a href="/">Home page</a></h4>
+<a href="${pageContext.request.contextPath}/admin/home"
+   class="w3-button w3-xlarge w3-border w3-border-blue w3-round-xxlarge">Panel administratora</a>
 </body>
 </html>

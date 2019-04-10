@@ -19,7 +19,7 @@
     <tr class="w3-blue">
         <td>Imię</td>
         <td>Nazwisko</td>
-        <td>PESEL</td>
+        <td>email</td>
         <td>Zmiana uprawnień</td>
     </tr>
     </thead>
@@ -28,29 +28,7 @@
         <tr>
             <td>${user.firstName}</td>
             <td>${user.lastName}</td>
-            <td>${user.pesel}</td>
-            <td><a href="${pageContext.request.contextPath}/admin/edit/${user.id}">Zmień uprawnienia</a></td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
-
-<h1 class="w3-container">Obsługa HR</h1>
-<table class="w3-table-all">
-    <thead>
-    <tr class="w3-blue">
-        <td>Imię</td>
-        <td>Nazwisko</td>
-        <td>PESEL</td>
-        <td>Zmiana uprawnień</td>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${hrs}" var="user">
-        <tr>
-            <td>${user.firstName}</td>
-            <td>${user.lastName}</td>
-            <td>${user.pesel}</td>
+            <td>${user.email}</td>
             <td><a href="${pageContext.request.contextPath}/admin/edit/${user.id}">Zmień uprawnienia</a></td>
         </tr>
     </c:forEach>
@@ -63,7 +41,7 @@
     <tr class="w3-blue">
         <td>Imię</td>
         <td>Nazwisko</td>
-        <td>PESEL</td>
+        <td>email</td>
         <td>Zmiana uprawnień</td>
     </tr>
     </thead>
@@ -72,7 +50,7 @@
         <tr>
             <td>${user.firstName}</td>
             <td>${user.lastName}</td>
-            <td>${user.pesel}</td>
+            <td>${user.email}</td>
             <td><a href="${pageContext.request.contextPath}/admin/edit/${user.id}">Zmień uprawnienia</a></td>
         </tr>
     </c:forEach>
@@ -80,7 +58,7 @@
 </table>
 
 <div align="center">
-<hr><a href="${pageContext.request.contextPath}/admin/adminHome" class="w3-button w3-xlarge w3-border w3-border-blue w3-round-xxlarge">Panel administratora</a>
+<hr><a href="${pageContext.request.contextPath}/admin/home" class="w3-button w3-xlarge w3-border w3-border-blue w3-round-xxlarge">Panel administratora</a>
 </div>
 
 </body>

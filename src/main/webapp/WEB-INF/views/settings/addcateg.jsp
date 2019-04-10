@@ -32,6 +32,6 @@
     </table>
 </form:form>
 
-<h4><a href="/">Home</a></h4>
+<h4><a href="/admin/home">Panel administratora</a></h4>
 </body>
 </html>

@@ -8,7 +8,7 @@
         <%@include file="../css/style.css"%>
         <%@include file="../css/w3.css" %>
     </style>
-    <title>Address</title>
+    <title>Dane</title>
 </head>
 <body>
 <%@include file="../elements/header.jsp" %>

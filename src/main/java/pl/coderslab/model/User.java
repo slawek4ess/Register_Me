@@ -2,6 +2,7 @@ package pl.coderslab.model;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import pl.coderslab.util.BCrypt;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +14,7 @@ import javax.validation.constraints.Pattern;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @NotBlank(message = " Podaj imię! ")
     private String firstName;
@@ -29,16 +30,18 @@ public class User {
     @Email(message = " Podaj poprawny adres email ! ")
     private String email;
 
+    @NotBlank(message = "Pole nie może być puste")
+    @Pattern(message = " Wpisz co najmniej 4 znaki! ", regexp = "^\\S{4,}")
     private String password;
 
     private boolean admin;
 
 //----------------------------------------------------------------------
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -91,7 +94,12 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+
+        this.password = encryptPassword(password);
+    }
+
+    public String encryptPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     @Override

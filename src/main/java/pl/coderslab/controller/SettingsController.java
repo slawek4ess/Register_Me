@@ -72,7 +72,7 @@ public class SettingsController {
             return "/settings/edit/" + id;
         }
         weekdayRepository.save(weekday);
-        return "redirect:/admin/settings/all";
+        return "redirect:/settings/all";
     }
 
     @GetMapping("/delete/{id}")
@@ -152,6 +152,30 @@ public class SettingsController {
             categoryRepository.save(category);
             return "redirect:/settings/categ";
         }
+    }
+
+    @PostMapping("/editcateg")
+    public String editCat(@Valid Category category, BindingResult result){
+        if (result.hasErrors()){
+            return "settings/editcateg";
+        } else {
+            categoryRepository.save(category);
+            return "redirect:/settings/categ";
+        }
+    }
+
+    @RequestMapping("/editcateg/{id}")
+    public String editcateg(@PathVariable int id, Model model) {
+        model.addAttribute("category", categoryRepository.findOne(id));
+        return "settings/editcateg";
+    }
+    @PostMapping("/editcateg/{id:[0-9]+}")
+    public String editcateg(@Valid Category category, BindingResult result, @PathVariable int id) {
+        if (result.hasErrors()) {
+            return "/settings/editcateg/" + id;
+        }
+        categoryRepository.save(category);
+        return "redirect:/settings/categ";
     }
 
     @GetMapping("/deletecateg/{id}")

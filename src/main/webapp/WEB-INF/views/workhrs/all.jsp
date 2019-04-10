@@ -1,22 +1,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Employee Workhours</title>
+    <title>Harmonogramy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-<table border="1" style="text-align: center">
+<h1>Harmonogramy</h1>
 
+<table  class="w3-table-all">
     <thead>
+    <tr>
     <th>ID</th>
     <th>Employee</th>
     <th>Weekday</th>
     <th>Start time</th>
     <th>End time</th>
     <th colspan="2">Actions</th>
+    </tr>
     </thead>
 
     <tbody>
@@ -33,10 +35,14 @@
     </c:forEach>
     </tbody>
 </table>
+<br>
+<a href="${pageContext.request.contextPath}/workhrs/addweek"
+   class="w3-button w3-large w3-border w3-border-blue w3-round-xxlarge">Dodaj wg szablonu</a>
 
-<h4><a href="/workhrs/addweek">Add all Week work Hours</a> </h4>
-<h5><a href="/workhrs/add">Add day work hours</a> </h5>
-
-<h4><a href="/">Home page</a></h4>
+<a href="${pageContext.request.contextPath}/workhrs/add"
+   class="w3-button w3-large w3-border w3-border-blue w3-round-xxlarge">Dodaj 1 pozycję</a>
+<hr>
+<a href="${pageContext.request.contextPath}/admin/home"
+   class="w3-button w3-xlarge w3-border w3-border-blue w3-round-xxlarge">Panel administratora</a>
 </body>
 </html>

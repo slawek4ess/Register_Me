@@ -25,10 +25,8 @@
 <table class="w3-table-all">
     <thead>
     <tr class="w3-blue">
-        <td>Firma</td>
         <td>Imię</td>
         <td>Nazwisko</td>
-        <td>PESEL</td>
         <td>Telefon</td>
         <td>Email</td>
         <td>Edycja</td>
@@ -38,10 +36,8 @@
     <tbody>
     <c:forEach items="${users}" var="user">
         <tr>
-            <td>${user.company.name}</td>
             <td>${user.firstName}</td>
             <td>${user.lastName}</td>
-            <td>${user.pesel}</td>
             <td>${user.phone}</td>
             <td>${user.email}</td>
             <td><a href="${pageContext.request.contextPath}/user/edit/${user.id}">Edytuj osobę</a></td>
@@ -53,6 +49,8 @@
 </table>
 <br>
 <a href="${pageContext.request.contextPath}/user/add" class="w3-button w3-xlarge w3-border w3-border-blue w3-round-xxlarge">Nowa osoba</a>
-<a href="${pageContext.request.contextPath}/admin/adminHome" class="w3-button w3-xlarge w3-border w3-border-blue w3-round-xxlarge">Panel administratora</a>
+<a href="${pageContext.request.contextPath}/admin/home" class="w3-button w3-xlarge w3-border w3-border-blue w3-round-xxlarge">Panel administratora</a>
+<a href="${pageContext.request.contextPath}/user/logout" class="w3-button w3-xlarge w3-border w3-border-blue w3-round-xxlarge"
+   onclick="return confirm('Na pewno chcesz się wylogować ?')">Wylogowanie</a>
 </body>
 </html>

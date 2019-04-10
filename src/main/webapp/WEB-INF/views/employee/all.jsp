@@ -1,24 +1,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Employees</title>
+    <title>Pracownicy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
 
 <h1>Employee list</h1>
 
-<table border="1" style="text-align: center">
+<table  class="w3-table-all">
     <thead>
+    <tr>
     <th>ID</th>
     <th>First name</th>
     <th>Last name</th>
     <th>E-mail</th>
     <th>Mobile</th>
     <th colspan="2">Actions</th>
+    </tr>
     </thead>
 
     <tbody>
@@ -36,9 +37,11 @@
     </tbody>
 </table>
 
-<a href="/employee/add">Add new employee</a>
+<br>
+<a href="${pageContext.request.contextPath}/employee/add"
+   class="w3-button w3-xlarge w3-border w3-border-blue w3-round-xxlarge">Dodaj pracownika</a>
 
-<h4><a href="/">Home page</a></h4>
-
+<a href="${pageContext.request.contextPath}/admin/home"
+   class="w3-button w3-xlarge w3-border w3-border-blue w3-round-xxlarge">Panel administratora</a>
 </body>
 </html>
