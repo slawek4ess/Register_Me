@@ -15,3 +15,8 @@ buildNumber.properties
 *.iml
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
+.idea/vcs.xml
+.idea/workspace.xml
+Register_Me/
+registerMe.iml
+registerMe.iml
