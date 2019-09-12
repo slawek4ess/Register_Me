@@ -27,7 +27,7 @@ public class User {
     private String phone;
 
     @NotBlank(message = "Pole nie może być puste")
-    @Email(message = " Podaj poprawny adres email ! ")
+//    @Email(message = " Podaj poprawny adres email ! ")
     private String email;
 
     @NotBlank(message = "Pole nie może być puste")
